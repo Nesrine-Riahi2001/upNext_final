@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <style>
+        .pagination {
+            justify-content: center;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center my-4">Statistiques des Événements</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Titre de l'événement</th>
+                <th>Réservations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in eventStats %}
+                <tr>
+                    <td>{{ stat.event.title }}</td>
+                    <td>{{ stat.reservations }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="text-center">Aucun événement trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base-back.html.twig' %}
+{% block head %}
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>SB Admin 2 - Dashboard</title>
+
+		<!-- Custom fonts for this template-->
+		<link href="{{ asset('asset1/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+		<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+		<!-- Custom styles for this template-->
+		<link href="{{ asset('asset1/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+
+	</head>
+{% endblock %}
+
+{% block title %}Liste des Quiz{% endblock %}
+
+{% block body %}
+    <h1>Liste des Quiz</h1>
+
+    <!-- Formulaire de recherche en AJAX -->
+    <form id="searchForm" action="{{ path('quiz_search') }}" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="title" id="searchInput" class="form-control" placeholder="Rechercher par titre..." value="{{ app.request.query.get('title', '') }}">
+        </div>
+    </form>
+
+    <!-- Formulaire pour ajouter un nouveau quiz -->
+    <h2>Ajouter un nouveau quiz</h2>
+    {{ form_start(quizForm) }}
+        {{ form_widget(quizForm) }}
+        <button type="submit" class="btn btn-success">Créer un quiz</button>
+    {{ form_end(quizForm) }}
+
+    <!-- Options de tri -->
+<div class="mb-3">
+    <form method="GET" id="sortForm">
+        <label for="sortBy">Trier par :</label>
+        <select name="sortBy" id="sortBy" class="form-select">
+            <option value="titreQuiz" {% if currentSortBy == 'titreQuiz' %}selected{% endif %}>Titre</option>
+            <option value="sujet" {% if currentSortBy == 'sujet' %}selected{% endif %}>Sujet</option>
+            <option value="nombre_questions" {% if currentSortBy == 'nombre_questions' %}selected{% endif %}>Nombre de questions</option>
+        </select>
+        <label for="order">Ordre :</label>
+        <select name="order" id="order" class="form-select">
+            <option value="ASC" {% if currentOrder == 'ASC' %}selected{% endif %}>Croissant</option>
+            <option value="DESC" {% if currentOrder == 'DESC' %}selected{% endif %}>Décroissant</option>
+        </select>
+    </form>
+</div>
+
+    <!-- Liste des quiz en AJAX -->
+    <h2>Quiz existants</h2>
+    <div id="quizList">
+        {% include 'quiz/_quiz_list.html.twig' %}
+    </div>
+
+    <!-- Bouton pour générer le PDF -->
+    <div class="mb-3">
+        <a href="{{ path('quiz_pdf') }}" class="btn btn-danger">📄 Télécharger en PDF</a>
+    </div>
+
+    <!-- Script AJAX -->
+    <script>
+    document.getElementById("searchInput").addEventListener("input", function() {
+        let query = this.value;
+
+        fetch("{{ path('quiz_search') }}?title=" + encodeURIComponent(query), {
+            method: "GET",
+            headers: { "X-Requested-With": "XMLHttpRequest" }
+        })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("quizList").innerHTML = html;
+        })
+        .catch(error => console.error("Erreur AJAX :", error));
+    });
+
+    document.getElementById("sortBy").addEventListener("change", updateQuizList);
+    document.getElementById("order").addEventListener("change", updateQuizList);
+
+    function updateQuizList() {
+        let sortBy = document.getElementById("sortBy").value;
+        let order = document.getElementById("order").value;
+
+        fetch("{{ path('quiz_search') }}?sortBy=" + encodeURIComponent(sortBy) + "&order=" + encodeURIComponent(order), {
+            method: "GET",
+            headers: { "X-Requested-With": "XMLHttpRequest" }
+        })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("quizList").innerHTML = html;
+        })
+        .catch(error => console.error("Erreur AJAX :", error));
+    }
+    </script>
+
+{% endblock %}

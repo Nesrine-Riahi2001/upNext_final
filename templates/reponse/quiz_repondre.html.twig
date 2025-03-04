@@ -1,0 +1,25 @@
+{% extends 'base-front.html.twig'%}
+
+
+{% block body %}
+<h1>Répondre au quiz</h1>
+
+<form method="post">
+    {% for question in questions %}
+        <h2>{{ question.texteQuestion }}</h2>
+        <label>
+            <input type="radio" name="reponse[{{ question.id }}]" value="{{ question.option1 }}" required> {{ question.option1 }}
+        </label><br>
+        <label>
+            <input type="radio" name="reponse[{{ question.id }}]" value="{{ question.option2 }}"> {{ question.option2 }}
+        </label><br>
+        <label>
+            <input type="radio" name="reponse[{{ question.id }}]" value="{{ question.option3 }}"> {{ question.option3 }}
+        </label><br>
+        <label>
+            <input type="radio" name="reponse[{{ question.id }}]" value="{{ question.option4 }}"> {{ question.option4 }}
+        </label><br><br>
+    {% endfor %}
+    <button type="submit">Soumettre</button>
+</form>
+{% endblock %}

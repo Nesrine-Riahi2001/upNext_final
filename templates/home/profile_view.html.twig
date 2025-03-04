@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+<!-- Back Button in Header -->
+<nav class="navbar bg-light shadow-sm">
+    <div class="container">
+        <a href="{{ path('home') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+</nav>
+{% endblock %}
+
+{% block title %}User Profile - {{ user.firstname }} {{ user.lastname }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+
+ 
+
+        <!-- Profile Image (Centered) -->
+        <ul class="list-unstyled" style="line-height: 2;">
+            <li>
+                <img src="{{ user.image ? '/uploads/' ~ user.image :  asset('img/user.png')  }}" 
+     alt="Profile Image" 
+     class="rounded-circle mb-3" 
+     style="width: 300px; height: 300px; object-fit: cover; display: block; margin-left: auto; margin-right: auto; border: 3px solid rgb(198, 18, 51); border-radius: 50%;">
+
+           
+           </li>
+        <div class="card-body text-center">
+        <h2>
+            {{ user.firstname }} {{ user.lastname }}
+            {% if 'ROLE_ARTIST' in user.roles and user.isVerified %}
+                <img src="{{ asset('assets/img/verified.png') }}" alt="Verified" 
+                     style="width: 30px; height: 30px; margin-left: 5px;">
+            {% endif %}
+        </h2>
+            <p class="text-muted">{{ user.email }}</p>
+            
+            <hr>
+
+            <h5>Role:</h5>
+            <p class="badge {% if 'ROLE_ARTIST' in user.roles %}bg-primary{% else %}bg-secondary{% endif %}">
+                {% if 'ROLE_ARTIST' in user.roles %}
+                    🎨 Artist
+                {% else %}
+                    🛍️ Client
+                {% endif %}
+            </p>
+
+            <h5>Status:</h5>
+            <p class="badge {% if user.isActive %}bg-success{% else %}bg-danger{% endif %}">
+                {{ user.isActive ? '✅ Active' : '⛔ Inactive' }}
+            </p>
+
+            {% if 'ROLE_ARTIST' in user.roles %}
+                <h5>Verification:</h5>
+                <p class="badge {% if user.isVerified %}bg-success{% else %}bg-warning{% endif %}">
+                    {{ user.isVerified ? '✔️ Verified' : '❌ Not Verified' }}
+                </p>
+            {% endif %}
+
+   
+
+            <hr>
+
+            <a href="{{ path('global_search') }}" class="btn btn-outline-dark mt-3"> Back to home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

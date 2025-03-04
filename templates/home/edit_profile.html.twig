@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+<!-- Back Button in Header -->
+<nav class="navbar bg-light shadow-sm">
+    <div class="container">
+        <a href="{{ path('home') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3" style="center">
+<div class="d-flex flex-column align-items-center gap-3 mt-3 "style=" padding: 45px 25px;">
+
+        <div class="card p-4 shadow-lg" style="width: 550px;">
+            <h1 class="h3 mb-3 font-weight-normal d-flex justify-content-center">
+                Edit Profile
+            </h1>
+
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <img src="/uploads/{{ app.user.image }}" 
+                     alt="Profile Image" 
+                     class="rounded-circle mb-3" 
+                     style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #007bff;">
+            </div>
+
+            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'novalidate': 'novalidate'}}) }}
+
+            <div class="mb-3">
+                {{ form_label(form.firstname) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.firstname) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.lastname) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.speciality) }}
+                {{ form_widget(form.speciality, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.speciality) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.image) }}
+                {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.image) }}
+            </div>
+
+        
+
+        <div class="d-flex flex-column align-items-center gap-3 mt-3">
+           <button class="btn btn-lg btn-danger w-100" type="submit">
+               Save
+            </button>
+      </div>
+        
+        <div class="d-flex flex-column align-items-center gap-3 mt-3 w-100">
+            <a href="{{ path('profile') }}" class="btn btn-secondary mt-3 w-100">Cancel</a>
+        </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

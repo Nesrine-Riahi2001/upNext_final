@@ -1,0 +1,83 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Détails de la Commande{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Détails de la Commande #{{ commande.id }}</h1>
+
+        {% for flash_message in app.flashes('success') %}
+            <div class="alert alert-success">{{ flash_message }}</div>
+        {% endfor %}
+        {% for flash_message in app.flashes('danger') %}
+            <div class="alert alert-danger">{{ flash_message }}</div>
+        {% endfor %}
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID Commande</th>
+                    <td>{{ commande.id }}</td>
+                </tr>
+                <tr>
+                    <th>Prix Total</th>
+                    <td>{{ commande.prixTotal + 5 }} DT</td>
+                </tr>
+                <tr>
+                    <th>Date de Commande</th>
+                    <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : 'Non définie' }}</td>
+                </tr>
+                <tr>
+                    <th>Statut</th>
+                    <td>{{ commande.status }}</td>
+                </tr>
+                <tr>
+                    <th>Utilisateur ID</th>
+                    <td>{{ user_id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom de l'Utilisateur</th>
+                    <td>{{ user_name }}</td>
+                </tr>
+                <tr>
+                    <th>Localisation</th>
+                    <td>{{ location }}</td>
+                </tr>
+                <tr>
+                    <th>Produits</th>
+                    <td>
+                        {% for produit in commande.produits %}
+                            {{ produit.nom }} ({{ produit.prix }} DT)<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Actions</th>
+                    <td>
+                        {% if commande.status != 'Livrée' %}
+                            {{ form_start(form) }}
+                            <div class="input-group mb-3">
+                                {{ form_widget(form.delivery_date, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+                                <button type="submit" class="btn btn-success">Confirmer Livraison</button>
+                            </div>
+                            {{ form_end(form) }}
+                        {% else %}
+                            <p>Commande déjà livrée le {{ commande.deliveryDate ? commande.deliveryDate|date('d/m/Y') : 'Non spécifié' }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_commande_index') }}" class="btn btn-secondary">Retour</a>
+                <form method="post" action="{{ path('app_commande_delete', {'id': commande.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+            <a href="{{ path('app_mailer_send', {'id': commande.id}) }}" class="btn btn-success" style="background-color: #28a745; border-color: #28a745;">Envoyer Email</a>
+        </div>
+    </div>
+{% endblock %}

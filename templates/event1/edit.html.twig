@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un événement{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="text-center mb-4">Modifier l'événement</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.title, 'Titre de l\'événement') }}
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                {% if form.title.vars.errors|length > 0 %}
+                    <div class="text-danger">
+                        {{ form_errors(form.title) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.ticketPrice, 'Prix du billet') }}
+                {{ form_widget(form.ticketPrice, {'attr': {'class': 'form-control'}}) }}
+                {% if form.ticketPrice.vars.errors|length > 0 %}
+                    <div class="text-danger">
+                        {{ form_errors(form.ticketPrice) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.descrip, 'Description') }}
+        {{ form_widget(form.descrip, {'attr': {'class': 'form-control', 'rows': '4'}}) }}
+        {% if form.descrip.vars.errors|length > 0 %}
+            <div class="text-danger">
+                {{ form_errors(form.descrip) }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.startdate, 'Date de début') }}
+                {{ form_widget(form.startdate, {'attr': {'class': 'form-control', 'placeholder': 'YYYY-MM-DD HH:mm'}}) }}
+                {% if form.startdate.vars.errors|length > 0 %}
+                    <div class="text-danger">
+                        {{ form_errors(form.startdate) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.enddate, 'Date de fin') }}
+                {{ form_widget(form.enddate, {'attr': {'class': 'form-control', 'placeholder': 'YYYY-MM-DD HH:mm'}}) }}
+                {% if form.enddate.vars.errors|length > 0 %}
+                    <div class="text-danger">
+                        {{ form_errors(form.enddate) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.location, 'Lieu') }}
+        {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
+         {% if form.location.vars.errors|length > 0 %}
+            <div class="text-danger">
+                {{ form_errors(form.location) }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.image, 'Image de l\'événement') }}
+        {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+        {% if form.image.vars.errors|length > 0 %}
+            <div class="text-danger">
+                {{ form_errors(form.image) }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.ticketCount, 'Nombre de billets') }}
+        {{ form_widget(form.ticketCount, {'attr': {'class': 'form-control'}}) }}
+        {% if form.ticketCount.vars.errors|length > 0 %}
+            <div class="text-danger">
+                {{ form_errors(form.ticketCount) }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group text-center  mt-4">
+        <button type="submit" class="btn btn-success btn-lg">Enregistrer les modifications</button>
+    </div>
+
+    {{ form_end(form) }}
+
+    <div class="text-center mt-4">
+        <a href="{{ path('home') }}" class="btn btn-outline-primary" 
+           style="display: inline-block; background: rgba(223, 36, 15, 0.94); color: white; font-size: 16px; padding: 12px 25px; border-radius: 50px; text-decoration: none; transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.68);" 
+           onmouseover="this.style.background='rgb(179, 0, 0)'; this.style.boxShadow='0px 6px 8px rgba(179, 0, 0, 0.4)';" 
+           onmouseout="this.style.background='rgba(223, 36, 15, 0.94)'; this.style.boxShadow='0px 4px 6px rgba(255, 0, 0, 0.68)';">
+           Retour à la liste des événements
+        </a>
+    </div>
+</div>
+{% endblock %}

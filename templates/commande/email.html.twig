@@ -1,0 +1,13 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Envoyer un Email{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Envoyer un Email pour la Commande #{{ commande.id }}</h1>
+        <p>Utilisez la commande suivante dans le terminal pour envoyer un email :</p>
+        <code>php bin/console app:send-email</code>
+        <p>Assurez-vous que le transport email est configuré dans .env (ex. MAILER_DSN).</p>
+        <a href="{{ path('app_commande_index') }}" class="btn btn-secondary">Retour</a>
+    </div>
+{% endblock %}

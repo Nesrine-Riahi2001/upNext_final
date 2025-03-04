@@ -1,0 +1,93 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_admin') }}" >
+    
+    <img src="assets/img/up-next.png" alt="no photo" height="50" >
+    </a>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ path('app_admin') }}">
+            
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Gestion
+    </div>
+
+    <!-- configuer les route ou href pour chaque gestion  -->
+
+    <li class="nav-item">
+    <a class="nav-link" href="{{ path('app_admin_compte') }}">
+       
+        <span>suivie les comptes</span>
+    </a>
+</li>
+
+    <!-- Nav Item - Suivi des Réclamations -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_reclamations_admin') }}">
+         
+            <span>Gestion des Réclamations</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Gestion Événements -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('event_index') }}">
+           
+            <span>Gestion Événements</span>
+        </a>
+    </li>
+<!-- Nav Item - Gestion reservation -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('admin_reservations') }}">
+           
+            <span>Gestion Réservations</span>
+        </a>
+    </li>
+      <!-- Nav Item - Gestion quiz -->
+      <li class="nav-item">
+      <a class="nav-link" href="{{ path('quiz_index') }}">
+        
+          <span>Gestion quiz</span>
+      </a>
+  </li>
+
+
+   <!-- Nav Item - Gestion quize -->
+   <li class="nav-item">
+   <a class="nav-link" href="">
+       
+       <span>Gestion Meet_up</span>
+   </a>
+</li>
+    <!-- Divider -->
+    {% block boutton %}
+    <a 
+        class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"
+        href="/{{ app.user ? 'logout' : 'login' }}"
+        @click="isOpen = false">
+        {{ app.user ? 'logout' : 'login' }}
+    </a> 
+    {% endblock %}
+    
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    
+
+</ul>
+<!-- End of Sidebar -->

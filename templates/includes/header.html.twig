@@ -1,0 +1,85 @@
+<!-- preloader
+  ================================================== -->
+  <div id="preloader">
+       <div id="loader"></div>
+  </div>
+
+<!-- header
+================================================== -->
+
+<header id="header" class="header d-flex align-items-center fixed-top">
+
+
+<div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+<a href="{{ path('view') }}" class="logo d-flex align-items-center me-auto me-xl-0">
+<!-- Uncomment the line below if you also wish to use an image logo -->
+<img src="assets/img/up-next.png" alt="">
+
+</a>
+
+
+
+
+  <nav id="navmenu" class="navmenu">
+    <ul>
+      <li><a href="#hello" title="">Accueil</a></li>
+    
+      <li><a href="#Utilisateur">Utilisateur normal</a></li>
+      <li><a href="#Artist">Artist</a></li>
+
+
+      {# <li><a href="#pricing">Pricing</a></li> #}
+        
+      {#<li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <ul>
+          <li><a href="#">Dropdown 1</a></li>
+          <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Deep Dropdown 1</a></li>
+              <li><a href="#">Deep Dropdown 2</a></li>
+              <li><a href="#">Deep Dropdown 3</a></li>
+              <li><a href="#">Deep Dropdown 4</a></li>
+              <li><a href="#">Deep Dropdown 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Dropdown 2</a></li>
+          <li><a href="#">Dropdown 3</a></li>
+          <li><a href="#">Dropdown 4</a></li>
+        </ul>
+      </li> #}
+
+      <li><a href="#contact">Contact us</a></li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+  </nav>
+
+{#
+<!--  search wrap -->
+  <div class="s-header__search">
+
+  <form role="search" method="get" class="s-header__search-form" action="#">
+      <label>
+          <span class="hide-content">Search for:</span>
+          <input type="search" class="s-header__search-field" placeholder="Type Your Keywords" value="" name="s" title="Search for:" autocomplete="off">
+      </label>
+      <input type="submit" class="s-header__search-submit" value="Search">
+  </form>
+
+  <a href="#0" title="Close Search" class="s-header__overlay-close">Close</a>
+
+</div> <!-- end search wrap -->
+
+#}
+{% block boutton %}
+<a 
+class="btn-getstarted" 
+href="/{{ app.user ? 'logout':'login' }}"
+  @click="isOpen = false"> {{ app.user ? 'logout':'login' }} </a> 
+
+  <a class="btn-getstarted" href="/{{ app.user ? 'home':'register' }}"
+   @click="isOpen = false"> {{ app.user ? 'home':'register' }} </a>
+{% endblock %}
+</div>
+</header>
+

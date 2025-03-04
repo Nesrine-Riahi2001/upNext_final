@@ -1,0 +1,41 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters: # Déclare une section où l’on définit des variables globales.
+    images_directory: '%kernel.project_dir%/public/uploads/images' #%kernel.project_dir% est une variable Symfony qui stocke le chemin du dossier racine du projet.
+    
+    twilio.account_sid: 'AC24e53965d6cae556f986c6af6d9088a6' # Replace with your Twilio SID
+    twilio.auth_token: '12baeb6f352d65f26c3c344412e37672'   # Replace with your Twilio token
+    twilio.phone_number: '+17754028238' # Replace with your Twilio phone number
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Configuration spécifique pour le contrôleur ReponseController
+    App\Controller\ReponseController:
+        arguments:
+            $twilioAccountSid: '%env(TWILIO_ACCOUNT_SID)%'
+            $twilioAuthToken: '%env(TWILIO_AUTH_TOKEN)%'
+            $twilioPhoneNumber: '%env(TWILIO_PHONE_NUMBER)%'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    # Ajout du service CartService (sans arguments explicites, autowiring géré)
+    App\Service\CartService:
+
+    # Forcer l'autowiring pour SessionFactoryInterface avec le service de factory
+    Symfony\Component\HttpFoundation\Session\SessionFactoryInterface: '@session.factory'

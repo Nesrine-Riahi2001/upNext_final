@@ -1,0 +1,14 @@
+{% extends 'base-back.html.twig'%}
+
+{% block title %}Ajouter une question{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une question au quiz : {{ quiz.titreQuiz }}</h1>
+
+    {{ form_start(questionForm) }}
+        {{ form_widget(questionForm) }}
+        <button type="submit" class="btn btn-success">Ajouter la question</button>
+    {{ form_end(questionForm) }}
+
+    <a href="{{ path('quiz_index') }}" class="btn btn-secondary">Retour à la liste des quiz</a>
+{% endblock %}

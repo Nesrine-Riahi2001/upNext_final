@@ -1,0 +1,43 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data', 'class': 'needs-validation'}}) }}
+<div class="row g-5">
+    <!-- Nom de l'œuvre -->
+    <div class="col-12 mb-4">
+        <h4 style="color: #1a1a1a; font-size: 1.25rem;">Veuillez entrer le nom complet de l'œuvre artistique :</h4>
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Ex: "Paysage d\'automne"', 'style': 'font-size: 1.1rem;'}}) }}
+        {{ form_errors(form.nom, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <!-- Image -->
+    <div class="col-12 mb-4">
+        <h4 style="color: #1a1a1a; font-size: 1.25rem;">Veuillez sélectionner une image représentant l'œuvre :</h4>
+        {{ form_widget(form.image, {'attr': {'class': 'form-control form-control-lg', 'style': 'font-size: 1.1rem;'}}) }}
+        {{ form_errors(form.image, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <!-- Prix -->
+    <div class="col-12 col-md-6 mb-4">
+        <h4 style="color: #1a1a1a; font-size: 1.25rem;">Veuillez indiquer le prix de l'œuvre en dinars :</h4>
+        {{ form_widget(form.prix, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Ex: 5000 DT', 'style': 'font-size: 1.1rem;'}}) }}
+        {{ form_errors(form.prix, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <!-- Catégorie -->
+    <div class="col-12 col-md-6 mb-4">
+        <h4 style="color: #1a1a1a; font-size: 1.25rem;">Veuillez choisir la catégorie de l'œuvre artistique : <i class="fas fa-chevron-down"></i></h4>
+        {{ form_widget(form.categorie, {'attr': {'class': 'form-control form-control-lg', 'style': 'font-size: 1.1rem;'}}) }}
+        {{ form_errors(form.categorie, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <!-- Description -->
+    <div class="col-12 mb-4">
+        <h4 style="color: #1a1a1a; font-size: 1.25rem;">Veuillez fournir une description détaillée de l'œuvre :</h4>
+        {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-lg', 'rows': '6', 'placeholder': 'Décrivez l\'œuvre en détail...', 'style': 'font-size: 1.1rem;'}}) }}
+        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <!-- Bouton de soumission (remplacer le bouton personnalisé par le champ save du formulaire) -->
+    <div class="col-12 text-center mt-5">
+        {{ form_widget(form.save, {'attr': {'class': 'btn btn-pink btn-lg', 'style': 'background-color: #ff69b4; border-color: #ff69b4; color: white; font-size: 1.25rem; padding: 12px 30px;'}}) }}
+    </div>
+</div>
+{{ form_end(form) }} <!-- Suppression de render_rest: false pour inclure les champs restants comme le token CSRF -->

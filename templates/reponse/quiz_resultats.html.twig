@@ -1,0 +1,10 @@
+{% extends 'base-front.html.twig'%}
+{% block body %}
+
+<h1>Résultats</h1>
+
+<p>Score : {{ score }} / {{ questions|length }}</p>
+
+
+<a href="{{ path('app_reponse_index') }}"> répondre au quiz</a>
+{% endblock %}

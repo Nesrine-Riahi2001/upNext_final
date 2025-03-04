@@ -1,0 +1,18 @@
+{% extends 'base-front.html.twig'%}
+
+
+{% block body %}
+    
+
+    <h2>Liste des quiz :</h2>  {# Nouvelle section pour les quiz #}
+    <ul>
+        {% for quiz in quizs %}  {# Boucle pour afficher chaque quiz #}
+            <li>
+                <a href="{{ path('app_reponse_quiz_repondre', {'quizId': quiz.id}) }}">
+                    Répondre au quiz {{ quiz.titreQuiz }}
+                </a>
+                
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

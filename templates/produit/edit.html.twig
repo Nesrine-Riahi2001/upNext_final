@@ -1,0 +1,16 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Modifier un Produit{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card p-5 shadow-sm" style="max-width: 800px; margin: 0 auto; border-radius: 15px; background-color: #f8f9fa;">
+            <h1 class="text-center mb-5" style="color: #e74c3c; font-size: 2rem;">Modifier le Produit</h1>
+            {{ include('produit/_form.html.twig', {'button_label': 'Mettre à Jour'}) }}
+            <div class="d-flex justify-content-between mt-5"> <!-- Use flexbox for left/right alignment -->
+                <a href="{{ path('app_produit_artist_list') }}" class="btn btn-secondary btn-lg">Retour</a>
+                {{ include('produit/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

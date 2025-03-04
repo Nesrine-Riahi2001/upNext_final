@@ -1,0 +1,6 @@
+{# templates/quiz/_form.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.titreQuiz) }}
+    {{ form_row(form.sujet) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,54 @@
+{% extends 'baseAdmin1.html.twig' %}
+
+{% block title %}Détails de l'Œuvre (Admin){% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card p-4 shadow-sm" style="max-width: 700px; margin: 0 auto; border-radius: 15px; background-color: #f5f6fa;">
+            <h1 class="text-center mb-4" style="color: #e74c3c;">Détails de l'Œuvre #{{ produit.id }}</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-dark text-white">Image</th>
+                            <td class="text-center">
+                                {% if produit.image %}
+                                    <img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.nom }}" style="max-width: 100%; height: auto; border-radius: 10px;">
+                                {% else %}
+                                    <span class="text-muted">Aucune image disponible</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Identifiant</th>
+                            <td class="text-center">{{ produit.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Nom</th>
+                            <td class="text-center">{{ produit.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Prix</th>
+                            <td class="text-center">{{ produit.prix }} €</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Catégorie</th>
+                            <td class="text-center">{{ produit.categorie }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Description</th>
+                            <td>{{ produit.description|default('Non disponible') }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-dark text-white">Statut</th>
+                            <td class="text-center">{{ produit.approvalStatus }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3">
+                <a href="{{ path('app_produit_index') }}" class="btn btn-secondary btn-lg">Retour à la Gestion</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

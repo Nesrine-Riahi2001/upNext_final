@@ -1,0 +1,48 @@
+{# templates/quiz/_quiz_list.html.twig #}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Sujet</th>
+            <th>Questions</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for quiz in quizzes %}
+        <tr>
+            <td>{{ quiz.titreQuiz }}</td>
+            <td>{{ quiz.sujet }}</td>
+            <td>
+                <ul>
+                    {% for question in quiz.questions %}
+                        <li>
+                            {{ question.texteQuestion }}
+                            <!-- Bouton Modifier pour chaque question -->
+                            <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <!-- Bouton Modifier Quiz -->
+                <a href="{{ path('quiz_edit', {'id': quiz.id}) }}" class="btn btn-warning">Modifier</a>
+
+                <!-- Lien pour ajouter une question à ce quiz -->
+                <a href="{{ path('quiz_add_question', {'id': quiz.id}) }}" class="btn btn-primary">Ajouter une question</a>
+
+                <!-- Formulaire pour supprimer ce quiz -->
+                <form method="post" action="{{ path('quiz_delete', {'id': quiz.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce quiz ?');" style="display: inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ quiz.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">Aucun quiz trouvé</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

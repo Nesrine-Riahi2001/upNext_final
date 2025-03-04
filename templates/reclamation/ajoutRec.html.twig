@@ -1,0 +1,9 @@
+  {# Affichage du formulaire #}
+    {{ form_start(form) }}
+        {{ form_widget(form.Titre) }}
+        {{ form_widget(form.MailClient_Rec) }}
+        {{ form_widget(form.Type_Rec) }}
+        {{ form_widget(form.Description_Rec) }}
+        {{ form_widget(form.file) }}
+          {{ form_widget(form.ajouter_Rec) }}
+    {{ form_end(form) }}

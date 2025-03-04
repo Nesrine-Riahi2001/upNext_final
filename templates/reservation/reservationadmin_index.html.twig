@@ -1,0 +1,429 @@
+{% extends 'baseAdmin1.html.twig' %}
+{% block head %}
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>suivie comptes</title>
+		
+			<link href="{{ asset('asset1/img/up-next logo png.png') }}" rel="icon">
+
+		<!-- Custom fonts for this template-->
+		<link href="{{ asset('asset1/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+		<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+		<!-- Custom styles for this template-->
+		<link href="{{ asset('asset1/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+	
+
+
+	</head>
+{% endblock %}
+
+
+{% block body %}
+<body
+	id="page-top">
+
+	<!-- Page Wrapper -->
+	<div
+		id="wrapper">
+
+		<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_admin') }}" >
+
+<img src="assets/img/up-next.png" alt="no photo" height="50" >
+</a>
+
+
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+
+
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+    <a class="nav-link" href="{{ path('app_admin') }}">
+        
+        <span>Dashboard</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+    Gestion
+</div>
+
+<!-- configuer les route ou href pour chaque gestion  -->
+
+<li class="nav-item">
+<a class="nav-link" href="{{ path('app_admin_compte') }}">
+   
+    <span>suivie les comptes</span>
+</a>
+</li>
+
+<!-- Nav Item - Suivi des Réclamations -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_reclamations_admin') }}">
+     
+        <span>Gestion des Réclamations</span>
+    </a>
+</li>
+
+<!-- Nav Item - Gestion Événements -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('event_index') }}">
+       
+        <span>Gestion Événements</span>
+    </a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link" href="">
+    
+    <span>Gestion produit</span>
+</a>
+</li>
+<!-- Nav Item - Gestion reservation -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('admin_reservations') }}">
+       
+        <span>Gestion Réservations</span>
+    </a>
+</li>
+  <!-- Nav Item - Gestion quiz -->
+  <li class="nav-item">
+  <a class="nav-link" href="{{ path('quiz_index') }}">
+    
+      <span>Gestion quiz</span>
+  </a>
+</li>
+
+
+<!-- Nav Item - Gestion quize -->
+<li class="nav-item">
+<a class="nav-link" href="">
+   
+   <span>Gestion Meet_up</span>
+</a>
+</li>
+<!-- Divider -->
+{% block boutton %}
+<a 
+    class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"
+    href="/{{ app.user ? 'logout' : 'login' }}"
+    @click="isOpen = false">
+    {{ app.user ? 'logout' : 'login' }}
+</a> 
+{% endblock %}
+
+
+<!-- Sidebar Toggler (Sidebar) -->
+
+
+</ul>
+<!-- End of Sidebar -->
+	
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div
+			id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div
+				id="content">
+
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+					<!-- Topbar Search -->
+					{% block search %}
+					<!-- Topbar Search -->
+					<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ path('home_search') }}" method="get">
+					<div class="input-group">
+						<input type="text" name="q" class="form-control bg-light border-0 small" placeholder="Search for..."
+							aria-label="Search" aria-describedby="basic-addon2" value="{{ app.request.query.get('q') }}">
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="submit" style="padding: 0.375rem 0.75rem;">
+								<img src="{{ asset('admin/img/search1.png') }}" alt="Search" style="width: 20px; height: 20px;">
+							</button>
+						</div>
+					</div>
+					</form>
+					
+					
+					{% endblock %}
+
+					<!-- Topbar Navbar -->
+					<ul
+						class="navbar-nav ml-auto">
+
+						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+						<li class="nav-item dropdown no-arrow d-sm-none">
+							<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-search fa-fw"></i>
+							</a>
+							<!-- Dropdown - Messages -->
+							<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+								<form class="form-inline mr-auto w-100 navbar-search">
+									<div class="input-group">
+										<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-primary" type="button">
+												<i class="fas fa-search fa-sm"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</li>
+
+						<!-- Nav Item - Alerts -->
+						<li class="nav-item dropdown no-arrow mx-1">
+							<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-bell fa-fw"></i>
+								<!-- Counter - Alerts -->
+								<span class="badge badge-danger badge-counter"></span>
+							</a>
+							<!-- Dropdown - Alerts -->
+							
+									
+						</li>
+
+						<!-- Nav Item - Messages -->
+						<li class="nav-item dropdown no-arrow mx-1">
+							<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-envelope fa-fw"></i>
+								<!-- Counter - Messages -->
+								<span class="badge badge-danger badge-counter"></span>
+							</a>
+							<!-- Dropdown - Messages -->
+							<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+								
+								<a class="dropdown-item d-flex align-items-center" href="#">
+									
+										
+						</li>
+
+						<div class="topbar-divider d-none d-sm-block"></div>
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							
+								<img class="img-profile rounded-circle" src="{{ asset('asset1/img/undraw_profile.svg') }}">
+							</a>
+							<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#">
+									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+									Profile
+								</a>
+						
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Logout
+								</a>
+							</div>
+						</li>
+
+					</ul>
+
+				</nav>
+				<!-- End of Topbar -->
+
+
+				<!-- Begin Page Content -->
+				<div
+					class="container-fluid">
+
+					<!-- Page Heading -->
+					<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+<h1 class="h3 mb-1 text-gray-800">Suivie les Réservations</h1>
+</div>
+
+
+
+					{# Tableau Des Suivis !! #}
+
+                       <!-- DataTales Example -->
+                   <div class="card shadow mb-4">
+  
+    <div class="card-body">
+        <div class="table-responsive">
+         
+		<div class="container-fluid">
+
+   
+<style>
+    /* Center the Table */
+    .table-container {
+        max-width: 1300px;  /* Adjust width as needed */
+        margin: 20px auto; /* Center horizontally and add equal spacing */
+        padding: 25px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0.2, 0.2);
+    }
+    
+    /* Ensures equal vertical spacing between containers */
+    .table-container + .table-container {
+        margin-top: 20px; /* Consistent spacing between stacked containers */
+    }
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header Styling */
+th, td {
+    padding: 10px; /* Reduce padding */
+    text-align: center; /* Center text */
+    border-right: 1px solid #ddd;
+}
+
+/* Remove Border on Last Column */
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+/* Table Header */
+thead {
+    background-color: rgb(249, 85, 85);
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Alternate Row Colors */
+tbody tr:nth-child(even) {
+    background-color: rgb(225, 231, 243);
+}
+
+/* Hover Effect */
+tbody tr:hover {
+    background-color: rgba(245, 247, 249, 0.44);
+}
+
+/* Section Titles */
+h2 {
+    text-align: center;
+    color: #333;
+    border-bottom: 3px solidhsl(0, 71.70%, 61.20%);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Adjust Action Icons */
+.action-icons a {
+    font-size: 18px; /* Smaller icons */
+    padding: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.action-icons a:hover {
+    color: rgb(83, 151, 223);
+}
+
+</style>
+{% block top %}
+<!-- Page Heading -->
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+</div>
+
+{% endblock %}
+
+<button class="btn btn-secondary" onclick="window.location.href='{{ path('app_admin') }}'" style="padding: ">
+<i class="fas fa-arrow-left"></i> Back
+</button>
+<div class="table-container">
+        <h2 style="display: inline-block;">Réservations</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Événement</th>
+                    <th>Nombre de billets</th>
+                    <th>Prix total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.user ? reservation.user.email : 'Non défini' }}</td>
+                        <td>{{ reservation.event ? reservation.event.title : 'Non défini' }}</td>
+                        <td>{{ reservation.quantity }}</td>
+                        <td>{{ reservation.totalPrice ? reservation.totalPrice|number_format(2, ',', ' ') ~ ' TND' : 'Non défini' }}</td>
+                        <td>
+                            <form action="{{ path('reservation_delete', {'id': reservation.id}) }}" method="post" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucune réservation trouvée</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+
+	<!-- Bootstrap core JavaScript-->
+		{% block js %}
+
+			<script src=" {{ asset('asset1/vendor/jquery/jquery.min.js') }}"></script>
+			<script src=" {{ asset('asset1/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+			<!-- Core plugin JavaScript-->
+			<script src=" {{ asset('asset1/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+			<!-- Custom scripts for all pages-->
+			<script src="{{ asset('asset1/js/sb-admin-2.min.js') }}"></script>
+
+
+			<!-- Page level plugins -->
+			<script src="{{ asset('asset1/vendor/chart.js/Chart.min.js') }}"></script>
+
+			<!-- Page level custom scripts -->
+			<script src="{{ asset('asset1/js/demo/chart-area-demo.js') }}"></script>
+
+			<script src="{{ asset('asset1/js/demo/chart-pie-demo.js') }}"></script>
+ {% endblock %}
+	</body>
+{% endblock %}
+

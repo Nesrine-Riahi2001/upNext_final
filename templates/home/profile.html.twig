@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+<!-- Back Button in Header -->
+<nav class="navbar bg-light shadow-sm">
+    <div class="container">
+        <a href="{{ path('home') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+</nav>
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-3" style="item-top-center">
+<h1>
+    Hello {{ app.user.firstname }} {{ app.user.lastname }}
+    {% if 'ROLE_ARTIST' in app.user.roles and app.user.isVerified %}
+        <img src="{{ asset('assets/img/verified.png') }}" alt="Verified" 
+             style="width: 30px; height: 30px; margin-left: 5px;">
+    {% endif %}
+</h1>
+
+    
+    <div class="card p-4 shadow-lg text-center" style="max-width: 1500px; margin: 0 auto;">
+
+        <!-- Profile Image (Centered) -->
+        <ul class="list-unstyled" style="line-height: 2;">
+            <li>
+                <img src="{{ app.user.image ? '/uploads/' ~ app.user.image :  asset('img/user.png')  }}" 
+     alt="Profile Image" 
+     class="rounded-circle mb-3" 
+     style="width: 300px; height: 300px; object-fit: cover; display: block; margin-left: auto; margin-right: auto; border: 3px solid rgb(198, 18, 51); border-radius: 50%;">
+
+           
+           </li>
+          
+        <!-- Name and Speciality -->
+
+        <li><h3 style="margin-top: 10px;"> {{ app.user.firstname }}  {{ app.user.lastname }}</h3></a></li>
+        
+        </ul>
+        {% if 'ROLE_ARTIST' in app.user.roles %}
+    <p class="text-muted" style="margin-bottom: 20px;">
+        @ARTIST
+    </p>
+{% elseif 'ROLE_CLIENT' in app.user.roles %}
+    <p class="text-muted" style="margin-bottom: 20px;">
+        @CLIENT
+    </p>
+{% endif %}
+
+
+        <!-- Profile Details with Added Margin -->
+        <ul class="list-unstyled" style="line-height: 2;">
+            <li><strong>Email:</strong> {{ app.user.email }} </li>
+            <li><strong>Speciality:</strong> {{ app.user.speciality }} </li>
+            <li><strong>Description:</strong> {{ app.user.description }}</i></li>
+        </ul>
+
+        <!-- Edit and Logout Buttons -->
+    <a href="{{ path('profile_edit') }}" class="btn btn-primary mt-3">Edit Profile</a>
+    <a href="{{ path('app_logout') }}" class="btn btn-primary mt-3 " style="background-color:rgb(77, 77, 77); border: none">Logout</a>
+    </div>
+</div>
+{% endblock %}

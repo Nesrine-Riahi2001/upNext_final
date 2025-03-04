@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block header %} 
+    {# Vous pouvez ajouter ici un en-tête personnalisé si besoin #}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>{{ event.title }}</h1>
+            <p><strong>Description:</strong> {{ event.descrip ?: 'Pas de description' }}</p>
+            <p><strong>Date de début:</strong> {{ event.startdate ? event.startdate|date('d/m/Y H:i') : 'Non définie' }}</p>
+            <p><strong>Date de fin:</strong> {{ event.enddate ? event.enddate|date('d/m/Y H:i') : 'Non définie' }}</p>
+            <p><strong>Lieu:</strong> {{ event.location ?: 'Non défini' }}</p>
+
+            {% if event.image %}
+                <div>
+                    <img src="{{ asset('uploads/images/' ~ event.image) }}" alt="Image de {{ event.title }}" class="img-fluid">
+                </div>
+            {% else %}
+                <p>Aucune image disponible pour cet événement.</p>
+            {% endif %}
+                {# Affichage du nombre de tickets restants #}
+            <p><strong>Tickets disponibles:</strong> {{ event.remainingTickets }}</p>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+        {% if 'ROLE_ARTIST' in app.user.roles %}
+            <a href="{{ path('event_edit', {'id': event.id}) }}" class="btn btn-warning mx-2">Modifier</a>
+        {% endif %}
+            <a href="{{ path('home') }}" class="btn btn-sm btn-danger" >Retour à la liste des événements</a>
+        </div>
+    </div>
+{% endblock %}

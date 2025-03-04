@@ -1,0 +1,63 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Liste des Commandes{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Liste des Commandes</h1>
+
+        {% for flash_message in app.flashes('info') %}
+            <div class="alert alert-info">{{ flash_message }}</div>
+        {% endfor %}
+        {% for flash_message in app.flashes('success') %}
+            <div class="alert alert-success">{{ flash_message }}</div>
+        {% endfor %}
+        {% for flash_message in app.flashes('danger') %}
+            <div class="alert alert-danger">{{ flash_message }}</div>
+        {% endfor %}
+
+        {% if commandes is empty %}
+            <p>Aucune commande disponible.</p>
+        {% else %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Prix Total</th>
+                        <th>Statut</th>
+                        <th>Produits</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.prixTotal + 5 }} DT</td>
+                            <td>{{ commande.status }}</td>
+                            <td>
+                                {% for produit in commande.produits %}
+                                    {{ produit.nom }}<br>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    {% if commande.status != 'Livrée' %}
+                                        <form method="post" action="{{ path('app_commande_update_delivery', {'id': commande.id}) }}" style="display:inline;">
+                                            <div class="input-group">
+                                                <input type="date" name="delivery_date" class="form-control form-control-sm" required>
+                                                <button type="submit" class="btn btn-success btn-sm">Confirmer livraison</button>
+                                            </div>
+                                        </form>
+                                    {% endif %}
+                                    {{ include('commande/_delete_form.html.twig', {'commande': commande}) }}
+                                    <a href="{{ path('app_mailer_send', {'id': commande.id}) }}" class="btn btn-sm" style="background-color: #ffa500; color: white; border: none;">Envoyer mail</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

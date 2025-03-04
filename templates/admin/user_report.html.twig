@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; background-color: #fff; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h2 { color: red; text-align: center; }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .footer { margin-top: 20px; text-align: center; font-size: 12px; color: gray; }
+    </style>
+</head>
+<body>
+  
+    <h2>User Report</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Speciality</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles | join(', ') }}</td>
+                    <td>{{ user.speciality }}</td>
+                    <td>{{ user.isActive ? 'Active' : 'Inactive' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="footer">
+        Created by Nesrine
+    </div>
+</body>
+</html>

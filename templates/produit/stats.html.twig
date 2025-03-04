@@ -1,0 +1,33 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Statistiques des Catégories{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 d-flex flex-column align-items-center">
+        <h1 class="text-center mb-5" style="color: #2c3e50; font-size: 2.5rem;">Statistiques des Catégories</h1>
+
+        <div class="card p-4 shadow-sm mb-5" style="width: 80%; max-width: 800px; border-radius: 15px; background-color: #f8f9fa;">
+            <h2 class="text-center mb-4" style="color: #27ae60;">Répartition des Achats par Catégorie</h2>
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Pourcentage (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category, percentage in categoryPercentages %}
+                        <tr>
+                            <td>{{ category }}</td>
+                            <td>{{ percentage }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('app_produit_list') }}" class="btn btn-secondary btn-lg">Retour aux produits</a>
+        </div>
+    </div>
+{% endblock %}

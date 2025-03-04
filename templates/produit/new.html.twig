@@ -1,0 +1,15 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Ajouter un Produit{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card p-5 shadow-lg" style="max-width: 1000px; margin: 0 auto; border-radius: 15px; background-color: #ecf0f1;">
+            <h1 class="text-center mb-5" style="color: #27ae60; font-size: 2.5rem;">Ajouter un Nouveau Produit Artistique</h1>
+            {{ include('produit/_form.html.twig') }}
+            <div class="text-start mt-4"> <!-- Changement ici : text-start au lieu de text-center -->
+                <a href="{{ path('app_produit_artist_list') }}" class="btn btn-secondary btn-lg">Revenir à la Liste des Œuvres</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

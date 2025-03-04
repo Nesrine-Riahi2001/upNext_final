@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<section id="hello" class="hero-section">
+    <div class="container">
+
+        <div class="hero-content">
+            <h1>Bienvenue sur </h1>
+            <h1><span class="highlight">Up-Next</span></h1>
+            <p>Votre plateforme pour les événements locaux et les créations artistiques.</p>
+            <p>Découvrez, réservez et soutenez les événements locaux ainsi que les produits artisanaux uniques, tout en un seul endroit.</p>
+            <div class="hero-buttons">
+                <a href="explore" class="btn primary">Découvrir</a>
+                <a href="contact" class="btn secondary">Nous contacter</a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="assets/img/about-5.webp" alt="Illustration d'événements et d'art">
+        </div>
+    </div>
+</section>
+<section id="Utilisateur" class="hero-section">
+<div class="container">
+    <div class="hero-content">
+        <h1>Pour les utilisateurs</h1>
+            <p> Parcourez et explorez les événements à venir dans votre région, achetez vos billets et réservez des produits exclusifs créés par des artistes locaux.</p>
+                <p> Restez à jour sur les dernières nouveautés et profitez pleinement de votre expérience avec nous.</p>
+                   
+        <div class="event-image ">
+            <img src="assets/img/event.jpg" alt="Illustration d'événements et d'art">
+        </div>
+   
+       
+    </div> 
+</div>
+</section>
+
+<section id="Artist" class="hero-section">
+<div class="container">
+    <div class="hero-content">
+        <h1>Pour les artist</h1>
+            <p> Créez, gérez et promouvez vos événements. Mettez en valeur vos produits artistiques auprès d'un large public et gérez facilement vos ventes et votre inventaire. </p>
+                <p> Connectez-vous avec vos fans et soutenez la communauté créative locale.</p>
+                   
+        <div class="event-image">
+            <img src="assets/img/artist.jpg" alt="Illustration d'événements et d'art">
+        </div>
+   
+       
+    </div> 
+</div>
+</section>
+
+
+
+<section id="contact" class="contact-card">
+    <div class="container">
+        <h2>Contactez-nous</h2>
+        <p>Email : <a href="mailto:upnext@gmail.com">upnext@gmail.com</a></p>
+        <p>Téléphone : <a href="tel:+999888777">99 888 777</a></p>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        background-color:rgba(249, 249, 249, 0);
+    }
+    .hero-content {
+        max-width: 80%;
+    }
+    .hero-content .highlight {
+        color:rgb(225, 19, 19);
+        font-weight: bold;
+    }
+    .hero-buttons .btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+    .btn.primary {
+        background-color:rgb(223, 14, 14);
+        color: #fff;
+    }
+    .btn.secondary {
+        background-color: #333;
+        color: #fff;
+    }
+    .hero-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        width: 1000px;
+    }
+    .event-image {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    width: 100%; /* Ensures the div takes full width */
+}
+
+.event-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+        
+    
+    .contact-card {
+        text-align: center;
+        background: #fff;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+
+</style>
+
+{% endblock %}
+

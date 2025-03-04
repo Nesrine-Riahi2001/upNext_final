@@ -1,0 +1,46 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Question{% endblock %}
+
+{% block body %}
+    <h1>Question</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th>TexteQuestion</th>
+                <td>{{ question.texteQuestion | default('No question text provided') }}</td>
+            </tr>
+            <tr>
+                <th>Option1</th>
+                <td>{{ question.option1 | default('No option 1 provided') }}</td>
+            </tr>
+            <tr>
+                <th>Option2</th>
+                <td>{{ question.option2 | default('No option 2 provided') }}</td>
+            </tr>
+            <tr>
+                <th>Option3</th>
+                <td>{{ question.option3 | default('No option 3 provided') }}</td>
+            </tr>
+            <tr>
+                <th>Option4</th>
+                <td>{{ question.option4 | default('No option 4 provided') }}</td>
+            </tr>
+            <tr>
+                <th>ReponseCorrecte</th>
+                <td>{{ question.reponseCorrecte | default('No correct answer provided') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_index') }}">back to list</a>
+
+    <a href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
+
+    {{ include('question/_delete_form.html.twig') }}
+{% endblock %}

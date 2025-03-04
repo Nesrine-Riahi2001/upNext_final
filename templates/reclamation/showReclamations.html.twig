@@ -1,0 +1,343 @@
+{% extends 'baseClient1.html.twig' %}
+
+{% block title %}Liste des Réclamations{% endblock %}
+ {% block head %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - iLanding Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{{ asset('asset/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('asset/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('asset/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('asset/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{{ asset('asset/css/main.css') }}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iLanding
+  * Template URL: https://bootstrapmade.com/ilanding-bootstrap-landing-page-template/
+  * Updated: Nov 12 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  =====================================================-->
+</head>
+{% endblock %}
+
+
+
+{% block body %}
+{% block header %}
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="assets/img/up-next.png" alt="">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{ path('app_home') }}" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+<a class="btn-getstarted" href="{{ path('app_ajout_reclamation') }}">Ajouter Réclamation</a>
+
+    </div>
+  </header>
+{% endblock %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<body class="hm-gradient">
+   <div class="container mt-4">
+    <div class="text-center darken-grey-text mb-4">
+        <h1 class="font-bold mt-4 mb-3 h5">Liste des Réclamations</h1>
+    </div>
+{# Recherche #}
+    <div class="card mb-4">
+        <div class="card-body">
+          {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_widget(form.mots) }}
+        </div>
+     
+        <div class="col-md-2">
+            {{ form_widget(form.Rechercher) }}
+        </div>
+    </div>
+{{ form_end(form) }}
+
+{# Trie #}
+    <div class="card mb-4">
+        <div class="card-body">
+          {{ form_start(formTrie) }}
+    <div class="row">
+
+
+     <style>
+     .btn-pink {
+    background-color: #FF69B4; /* Couleur rose */
+    color: white;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #FF1493; /* Couleur rose plus foncée au survol */
+}
+     </style>
+
+
+
+        <div class="col-md-2">
+{{ form_widget(formTrie.TriCroissantTitre, { 'attr': { 'class': 'btn btn-pink' } }) }}        </div>
+    </div>
+{{ form_end(formTrie) }}
+
+            {% if reclamations is not empty %}
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Mail Client</th>
+                            <th>Type</th>
+                            <th>Date Création</th>
+                            <th>Statut</th>
+                            <th>Pièce jointe</th>
+                            <th>Actions</th>
+                            <th>Suivi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reclamation in reclamations %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ reclamation.Titre }}</td>
+                                <td>{{ reclamation.getDescriptionRec() }}</td>
+                                <td>{{ reclamation.getMailClientRec() }}</td>
+                                <td>{{ reclamation.getTypeRec() }}</td>
+                                <td>{{ reclamation.getDateCreationRec()|date('d/m/Y') }}</td>
+                                <td>{{ reclamation.getStatusRec() }}</td>
+                                <td>
+                                    {% if reclamation.getFichierPJRec() %}
+                                        <a href="{{ asset('uploads/' ~ reclamation.getFichierPJRec()) }}" target="_blank" class="btn btn-primary btn-sm">Télécharger</a>
+                                    {% else %}
+                                        Pas de pièce jointe
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_modifier_reclamation', {'id': reclamation.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                    <form action="{{ path('app_supprimer_reclamation', {'id': reclamation.id}) }}" method="post" style="display:inline;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réclamation ?');">Supprimer</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_voir_suivi', {'id': reclamation.id}) }}" class="btn btn-info btn-sm">Voir suivi</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="text-center">Aucune réclamation trouvée.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+{# HEdhi el zinna !!! #}
+ <style>
+.hm-gradient {
+    background-image: linear-gradient(to top,rgb(234, 146, 146) 0%, #e3eeff 99%, #e3eeff 100%);
+}
+.darken-grey-text {
+    color: #2E2E2E;
+}
+.input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input.purple-border {
+    border: 1px solid #9e9e9e;
+}
+.input-group.md-form.form-sm.form-2 input[type=text]:focus:not([readonly]).purple-border {
+    border: 1px solidrgb(200, 104, 131);
+    box-shadow: none;
+}
+.form-2 .input-group-addon {
+    border: 1px solidrgb(200, 104, 114);
+}
+.danger-text {
+    color: #ff3547; 
+}  
+.success-text {
+    color: #00C851; 
+}
+.table-bordered.red-border, .table-bordered.red-border th, .table-bordered.red-border td {
+    border: 1px solid #ff3547!important;
+}        
+.table.table-bordered th {
+    text-align: center;
+}
+ </style>
+{# <body class="hm-gradient">
+    
+    <main>
+        
+        <!--MDB Tables-->
+        <div class="container mt-4">
+
+            <div class="text-center darken-grey-text mb-4">
+                <h1 class="font-bold mt-4 mb-3 h5">Built with Material Design for Bootstrap 4</h1>
+                <a class="btn btn-danger btn-md" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">Free download<i class="fa fa-download pl-2"></i></a>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <!-- Grid row -->
+                    <div class="row">
+                        <!-- Grid column -->
+                        <div class="col-md-12">
+                            <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Search within table</h2>
+                            <div class="input-group md-form form-sm form-2 pl-0">
+                                <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." aria-label="Search">
+                                <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                            </div>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                    <!--Table-->
+                    <table class="table table-striped">
+                        <!--Table head-->
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+                        <!--Table body-->
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                        <!--Table body-->
+                    </table>
+                    <!--Table-->
+                </div>
+            </div>
+   
+
+        </div>
+        <!--MDB Tables-->
+      
+    </main>
+  
+</body> #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

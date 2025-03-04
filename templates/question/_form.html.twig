@@ -1,0 +1,10 @@
+{# templates/question/_form.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.texteQuestion) }}
+    {{ form_row(form.option1) }}
+    {{ form_row(form.option2) }}
+    {{ form_row(form.option3) }}
+    {{ form_row(form.option4) }}
+    {{ form_row(form.reponseCorrecte) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

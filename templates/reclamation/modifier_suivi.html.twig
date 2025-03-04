@@ -1,0 +1,255 @@
+{% extends 'baseClient1.html.twig' %}
+{% block title %}Modifier la Satisfaction du Suivi
+{% endblock %}
+{% block head %}
+
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Index - iLanding Bootstrap Template</title>
+	<meta name="description" content="">
+	<meta
+	name="keywords" content="">
+
+	<!-- Favicons -->
+	<link href="{{ asset('asset/img/favicon.png') }}" rel="icon">
+	<link
+	href="{{ asset('asset/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+	<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('asset/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+	<link href="{{ asset('asset/vendor/aos/aos.css') }}" rel="stylesheet">
+	<link href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+	<link
+	href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+	<!-- Main CSS File -->
+	<link
+	href="{{ asset('asset/css/main.css') }}" rel="stylesheet">
+
+<!-- =======================================================
+  * Template Name: iLanding
+  * Template URL: https://bootstrapmade.com/ilanding-bootstrap-landing-page-template/
+  * Updated: Nov 12 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  =====================================================-->
+{% endblock %}
+{% block body %}
+	<body class="index-page">
+{% block header %}
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="assets/img/up-next.png" alt="">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{ path('app_home') }}" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+
+    </div>
+  </header>
+{% endblock %}
+
+		{% block Features %}
+        <br>
+        <br>
+        <br>
+			<!-- Features Section -->
+			<section
+				id="features" class="features section">
+
+				<!-- Section Title -->
+				<div class="container section-title">
+					<h2>Reclamations et Suivis</h2>
+					<p>Veuillez nous donner votre avis suivant les suivis de vos reclamations</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container">
+
+					<div class="d-flex justify-content-center"></div>
+
+					<div class="tab-content">
+
+						<div class="tab-pane fade active show" id="features-tab-1">
+							<div class="row">
+								<div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+									<h3>Pourquoi faire une réclamation ?</h3>
+									<p class="fst-italic">
+										Il est essentiel de signaler tout problème rencontré afin d'améliorer nos services et garantir votre satisfaction
+									</p>
+									<ul>
+										<li>
+											<i class="bi bi-check2-all"></i>
+											<span>Exprimez vos préoccupations et obtenez une solution adaptée rapidement.</span>
+										</li>
+										<li>
+											<i class="bi bi-check2-all"></i>
+											<span>Suivez l'évolution de votre réclamation en toute transparence</span>
+										</li>
+										<li>
+											<i class="bi bi-check2-all"></i>
+											<span>Votre retour nous permet de garantir un service de qualité et d'améliorer votre expérience.</span>
+										</li>
+									</ul>
+								</div>
+								<div class="col-lg-6 order-1 order-lg-2 text-center">
+									<img src="{{ asset('asset/img/features-illustration-1.webp') }}" alt="" class="img-fluid">
+								</div>
+							</div>
+						</div>
+						<!-- End tab content item -->
+						<br>
+						<br>
+						<br>
+
+						{{ form_start(form) }}
+						<div class="row">
+							{% for choix in form.Statisfaction %}
+								<div class="col-md-4">
+									<div class="form-check">
+										{{ form_widget(choix, {'attr': {'class': 'form-check-input'}}) }}
+										{{ form_label(choix, null, {'class': 'form-check-label'}) }}
+									</div>
+								</div>
+							{% endfor %}
+                           
+						</div>
+                       
+
+					
+						 
+
+
+					</div>
+
+				</div>
+ <div class="container">
+
+					<div class="d-flex justify-content-center">
+                        <div class="row">
+                        <div class="col-md-12">
+                        	{{ form_widget(form.modifier_Suivi, {'attr': {'class': 'btn btn-primary', 'style': 'background-color: #6f42c1; border-color: #6f42c1;'}}) }}
+
+        {{ form_end(form) }}
+
+
+                        </div>
+                        </div>
+                         </div>
+                        </div>
+
+
+			</section>
+			<!-- /Features Section -->
+		{% endblock %}
+		{% block FeaturesCards %}
+        
+			<!-- Features Cards Section -->
+			<section id="features-cards" class="features-cards section">
+
+				<div class="container">
+
+					<div class="row gy-4">
+
+						<div class="col-xl-4 col-md-6">
+							<div class="feature-box orange">
+								<i class="bi bi-award"></i>
+								<h4>Quitter / Ignorer</h4>
+								<p>Vous annulez votre demande de reclamation</p>
+							</div>
+						</div>
+						<!-- End Feature Borx-->
+
+
+						{# <div class="col-xl-4 col-md-6" >
+						            <div class="feature-box green">
+						              <i class="bi bi-sunrise"></i>
+						              <h4>Vous etes satisfait!</h4>
+						              <p>Vous etes totalement satisfait par les suivis de votre reclamation</p>
+						            </div>
+						          </div><!-- End Feature Borx--> #}
+
+						<div class="col-xl-4 col-md-6">
+							<div class="feature-box green">
+								<i class="bi bi-sunrise"></i>
+								<h4>Vous êtes satisfait!</h4>
+								<p>Vous êtes totalement satisfait par les suivis de votre réclamation</p>
+							</div>
+						</div>
+
+
+						<div class="col-xl-4 col-md-6">
+							<div class="feature-box red">
+								<i class="bi bi-shield-check"></i>
+								<h4>Vous n'etes pas satisfait</h4>
+								<p>Il existe encore des problemes !</p>
+							</div>
+						</div>
+						<!-- End Feature Borx-->
+
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Features Cards Section -->
+
+		{% endblock %}
+
+		{% block JS %}
+
+
+			<!-- Vendor JS Files -->
+			<script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+			<script src="{{ asset('asset/vendor/php-email-form/validate.js') }}"></script>
+			<script src="{{ asset('asset/vendor/aos/aos.js') }}"></script>
+			<script src="{{ asset('asset/vendor/glightbox/js/glightbox.min.js') }}"></script>
+			<script src="{{ asset('asset/vendor/swiper/swiper-bundle.min.js') }}"></script>
+			<script src="{{ asset('asset/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+
+			<!-- Main JS File -->
+			<script src="{{ asset('asset/js/main.js') }}"></script>
+		{% endblock %}
+
+	</body>
+
+{% endblock %}

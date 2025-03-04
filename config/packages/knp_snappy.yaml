@@ -1,0 +1,8 @@
+knp_snappy:
+    pdf:
+        enabled: true
+        binary: C:\wkhtmltopdf\bin\wkhtmltopdf.exe
+        options:
+            allow: C:\
+            no-outline: true
+            enable-local-file-access: true
